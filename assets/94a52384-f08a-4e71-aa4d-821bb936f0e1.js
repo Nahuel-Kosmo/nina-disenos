@@ -27,6 +27,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ============================================
+// NAV: menú mobile (burger)
+// ============================================
+const navBurger = document.querySelector('.nav-burger');
+if (navBurger) {
+  navBurger.addEventListener('click', () => {
+    nav.classList.toggle('menu-open');
+    navBurger.classList.toggle('active');
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      nav.classList.remove('menu-open');
+      navBurger.classList.remove('active');
+    });
+  });
+}
+
+// ============================================
 // REVEAL: contenido siempre visible (sin animación bloqueante)
 // ============================================
 document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));

@@ -1884,20 +1884,56 @@ footer {
     border-radius: 50%;
     background: var(--paper);
     border: 1px solid var(--line);
+    z-index: 61;
   }
   .nav-burger span {
     display: block;
     width: 16px; height: 2px;
     background: var(--ink);
     position: relative;
+    transition: background .2s var(--ease);
   }
   .nav-burger span::before, .nav-burger span::after {
     content: ""; position: absolute;
     left: 0; right: 0; height: 2px;
     background: var(--ink);
+    transition: transform .2s var(--ease), top .2s var(--ease);
   }
   .nav-burger span::before { top: -5px; }
   .nav-burger span::after  { top: 5px; }
+  .nav-burger.active span { background: transparent; }
+  .nav-burger.active span::before { top: 0; transform: rotate(45deg); }
+  .nav-burger.active span::after  { top: 0; transform: rotate(-45deg); }
+
+  .nav-links {
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    top: 76px; left: 20px; right: 20px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 8px 20px;
+    box-shadow: var(--shadow-card);
+    transform: translateY(-8px);
+    transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
+  }
+  .nav.menu-open .nav-links {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .nav-links a {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 16px;
+  }
+  .nav-links a:last-child { border-bottom: none; }
 
   .hero { padding: 110px 0 60px; min-height: auto; }
   .hero-inner { grid-template-columns: 1fr; gap: 40px; }
